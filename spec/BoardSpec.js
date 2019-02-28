@@ -19,6 +19,12 @@ describe('Board', function() {
     });
   };
 
+
+
+//takes expected conflicts and a matrix to check for
+
+//takes 
+
   describe('Empty board', function() {
     verifyConflictTypes([''], [
       [0, 0, 0, 0],
