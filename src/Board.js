@@ -79,74 +79,110 @@
     //
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
-
-      var row = this.get(rowIndex)
-      var total = 0;
-
-      for (var i = 0; i < row.length; i++){
-        total += row[i];
+      var conflicts = this.get(rowIndex).reduce((accumulator, currentValue) => accumulator + currentValue);
+  
+      if (conflicts > 1) {
+         return true;
       }
-
-      if (total > 1){
-        return true
-      } else {
-        return false
-      }
-    },
-    
-
-    hasAnyRowConflicts: function() {
-    
-      for(var i = 0; i < this.attributes.n; i++){
-        if(this.hasRowConflictAt(i) === true){
-          return true 
-        }
-      }
-      return false
-    },
-
-
-
-    // COLUMNS - run from top to bottom
-    // --------------------------------------------------------------
-    //
-    // test if a specific column on this board contains a conflict
-    hasColConflictAt: function(colIndex) {
-      var total = 0;
-      var boardSize = this.attributes.n; //  let's say 3x3
-
-     for(var i = 0; i < boardSize; i++){
-      total += this.attributes[i][colIndex]
-     }
-
-     // if 0 = 3
-
-      if (total === boardSize){
-        return true
-      } else {
-        return false
-      }
-    }, 
-
-    // test if any columns on this board contain conflicts
-    hasAnyColConflicts: function() {
-      for(var i = 0; i < this.attributes.n; i++){
-        if(this.hasColConflictAt(i) === true){
-          return true 
-        }
-      }
-      return false
-    },
-
-
-
-    // Major Diagonals - go from top-left to bottom-right
-    // --------------------------------------------------------------
-    //
-    // test if a specific major diagonal on this board contains a conflict
-    hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
-      return false; // fixme
-    },
+      return false;
+     },
+  
+     // test if any rows on this board contain conflicts
+     hasAnyRowConflicts: function() {
+  
+       for(var i = 0; i < this.attributes.n; i++ )  {
+         if (this.hasRowConflictAt(i) === true) {
+           return true
+         }
+       }
+       return false
+  
+       // var conflicts = 0;
+       // this.rows().forEach((element,index) => {
+       //   if (this.hasRowConflictAt(index) === true) {
+       //     conflicts++
+  
+       // if (conflicts >= 1){
+       //   return true
+       // }
+       // return false
+     },
+  
+  
+  
+     // COLUMNS - run from top to bottom
+     // --------------------------------------------------------------
+     //
+     // test if a specific column on this board contains a conflict
+     hasColConflictAt: function(colIndex) {
+     //iterate thru rows
+     //keep column index constant
+     //use a counter variable to accumulate values at array column indexes
+     //collect values at the i-Th row, while maintaing column index
+       //if total is = to the number of rows there is a collision
+       var board = this.attributes
+       var size = this.attributes.n;
+       var counter = 0;
+       for (var i = 0 ; i < size ; i++){
+         counter += board[i][colIndex]
+       }
+       if (counter > 1){
+         return true
+       }
+       return false
+     },
+     /*
+     I: column index
+     O: boolean
+     C: none
+     E: no rooks found
+     //pseudocode:
+  
+  
+     */
+     // test if any columns on this board contain conflicts
+     hasAnyColConflicts: function() {
+       for (var i = 0; i < this.rows().length; i++){
+         if (this.hasColConflictAt(i) === true){
+           return true
+         }
+       }
+       return false
+     },
+  
+  
+  
+     // Major Diagonals - go from top-left to bottom-right
+     // --------------------------------------------------------------
+     //
+     // test if a specific major diagonal on this board contains a conflict
+     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
+       var pieceCount = 0;
+       var row = 0;
+       var col = majorDiagonalColumnIndexAtFirstRow;
+       var board = this.rows();
+       while (this._isInBounds(row, col)) {
+         if (board[row][col] === 1) {
+           pieceCount++;
+         }
+         if (pieceCount > 1) {
+           return true;
+         }
+         row++;
+         col++;
+       }
+       return false;
+     },
+     /*
+     pieceCount = 0
+     starting at row 0 given a col in that row
+     Loop through the following pattern until I'm off the board
+       if there's a piece at current position, increment pieceCount
+       if pieceCount is greater than 1 return true
+       go down one
+       go right one
+     check pieceCount and if piece count > 1 return true
+     */
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
