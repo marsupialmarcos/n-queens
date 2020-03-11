@@ -40,7 +40,7 @@ It uses a pre-commit hook to run staged files through eslint before each commit.
 
 Some of the helper functions in src/Board.js have been completed for you, and some have not. You should only need to edit the functions listed below.
 
-* Open *src/Board.js* and fix the incomplete helpers (look for the 'start here' section) such that the specs in spec/BoardSpec.js pass. To see if your specs are passing, open *SpecRunnner.html* and look at the 'Board' section. Doing so will help you understand the problem more thoroughly, and will make the visualizer show any conflicts on the board.
+* Open *src/Board.js* and fix the incomplete helpers (look for the 'start here' section) such that the specs in *spec/BoardSpec.js* pass. To see if your specs are passing, open *SpecRunnner.html* and look at the 'Board' section. Doing so will help you understand the problem more thoroughly, and will make the visualizer show any conflicts on the board.
   * **hasRowConflictAt():** test if a specific row on this board contains a conflict
   * **hasAnyRowConflicts():** test if any rows on this board contain a conflict
   * **hasColConflictAt():** test if a specific column on this board contains a conflict
@@ -57,11 +57,11 @@ Some of the helper functions in src/Board.js have been completed for you, and so
 * Identify the time complexity of each of your helper methods, as well as for each of your working solutions
 
 **Helpful Info**
-* Don't reinvent wheel where you don't have to. Use the Board constructor you build out in src/Board.js in your code. You can also access it within the Chrome console easily after opening BoardViewer.html
+* Don't reinvent wheel where you don't have to. Use the Board constructor you build out in *src/Board.js* in your code. You can also access it within the Chrome console easily after opening *BoardViewer.html*
 * Create new board instances that have access to all the helper methods you write in src/Board.js
-  * example: var board = new Board({n:5})
+  * *example: var board = new Board({n:5})*
 * Rather than setting or getting object properties directly with plain JavaScript, Backbone provides the get and set methods. Play with the getters and setters that Backbone provides
-example: board.get(3) will return the 3rd row of the instance board (assuming that instance exists)
+  * *example: board.get(3)* will return the 3rd row of the instance board (assuming that instance exists)
 * **Rows:** run horizontally, left to right
 * **Columns:** run vertically, top to bottom
 * **Major:** Diagonals run diagonally, top-left to bottom-right
@@ -80,22 +80,22 @@ Our advanced content is intended to throw you in over your head, requiring you t
   * Consider what work you can avoid doing:
     * Are you doing any work early in the algorithm that you can tell will be fruitless?
     * How much work do you do on paths which are obviously wrong?
-* Use JSPerf or BenchmarkJS to benchmark your code. Use the results to improve your code. Notate changes in your commit messages
+* Use [JSPerf](https://jsperf.com/) or [BenchmarkJS](https://benchmarkjs.com/) to benchmark your code. Use the results to improve your code. Notate changes in your commit messages
   * What symmetries in the chess board can you exploit to optimize your solution? Do it!
   * Implement a solution using bitwise operators
 * Read some of these additional resources about bitwise operations:
-  * Wikipedia on bitwise operations
-  * C Programming tutorial on bitwise operators
+  * [Wikipedia on bitwise operations](https://en.wikipedia.org/wiki/Bitwise_operation)
+  * [C Programming tutorial on bitwise operators](https://www.cprogramming.com/tutorial/bitwise_operators.html)
   * This tutorial is in C, another programming language where bitwise operators are more common, but is also applicable to JavaScript.
-MDN on bitwise operators
+[MDN on bitwise operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators)
 * Try devising your own bitshifting solution. How will you interact with the problem in bits?
-* Implement Martin Richards's bitwise n-queens solution algorithm, in JavaScript
+* Implement [Martin Richards's bitwise n-queens solution algorithm](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.51.7113&rep=rep1&type=pdf), in JavaScript
 
 *Optional*
 
-* Play with Hack Reactor's own Ruan Pethiyagoda's n-queens solution tweet by either:
+* Play with Hack Reactor's own Ruan Pethiyagoda's [n-queens solution tweet](https://twitter.com/spellrp/status/332992908565295104) by either:
   * Writing a blog post that deciphers the tweet for a lay-programmer
   * Trying to improve on the speed of his algorithm without exceeding the character limit for a tweet
 
 # NIGHTMARE MODE
-Parallelize your solution then implement it using HTML5 web workers
+[Parallelize](https://en.wikipedia.org/wiki/Parallel_computing) your solution then implement it using [HTML5 web workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers)
